@@ -29,3 +29,20 @@ objective index of body weight (kg / m ^ 2) using the ratio of height to weight,
 - region: the beneficiary's residential area in the US, northeast, southeast, southwest, northwest.
 
 - charges: Individual medical costs billed by health insurance
+
+## Objectives 
+### Our project aims to address certain key questions related to healthcare costs based on the available data.
+- How can we relate health insurance cost to various predictors like age, sex, BMI, number of covered 
+children, region of US? 
+- Which variables have the most pronounced impact on health insurance cost? What are the variables 
+with the least impact?
+- How does medical cost depend on the predictors or a combination of several predictors? For example
+  - Does a specific region in US show a greater health insurance cost compared to other regions?
+  - How does health insurance cost for a smoker with low BMI compare to that of a non-smoker 
+with high BMI?
+  - How does the health insurance cost of a non-smoker old person compare to that of a smoker 
+who is young?
+  - How does number of covered children impact health insurance cost?
+  - How does the health insurance cost males compare to that of females?
+- What is the predicted health insurance cost for an individual in the US based on some basic 
+demographic characteristics?
