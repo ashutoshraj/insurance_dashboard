@@ -56,87 +56,87 @@ def main():
 
     if select_algo == "Linear Regression":
         st.subheader("Training model using {}".format(select_algo))
-        linear_reg_model= LinearRegression()
-        linear_reg_model.fit(X_train_scaled, y_train)
-        y_pred = linear_reg_model.predict(X_test_scaled)
+        linear_regression= LinearRegression()
+        linear_regression.fit(X_train_scaled, y_train)
+        y_pred = linear_regression.predict(X_test_scaled)
         y_pred = pd.DataFrame(y_pred)
-        MAE_li_reg= metrics.mean_absolute_error(y_test, y_pred)
-        MSE_li_reg = metrics.mean_squared_error(y_test, y_pred)
-        RMSE_li_reg =np.sqrt(MSE_li_reg)
-        st.dataframe(pd.DataFrame([MAE_li_reg, MSE_li_reg, RMSE_li_reg], index=['MAE_li_reg', 'MSE_li_reg', 'RMSE_li_reg'], columns=['Metrics']))
+        linear_regression_mae= metrics.mean_absolute_error(y_test, y_pred)
+        linear_regression_mse = metrics.mean_squared_error(y_test, y_pred)
+        linear_regression_rmse =np.sqrt(linear_regression_mse)
+        st.dataframe(pd.DataFrame([linear_regression_mae, linear_regression_mse, linear_regression_rmse], index=['linear_regression_mae', 'linear_regression_mse', 'linear_regression_rmse'], columns=['Metrics']))
 
-        scores = cross_val_score(linear_reg_model, X_train_scaled, y_train, cv=k_fold)
+        scores = cross_val_score(linear_regression, X_train_scaled, y_train, cv=k_fold)
         st.subheader("{} Cross Validation Score: {}".format(k_fold, np.sqrt(scores)))
 
-        st.subheader("R2 Score: {}".format(r2_score(y_test, linear_reg_model.predict(X_test_scaled))))
+        st.subheader("R2 Score: {}".format(r2_score(y_test, linear_regression.predict(X_test_scaled))))
 
     elif select_algo == "Gradient Boosting":
         st.subheader("Training model using {}".format(select_algo))
-        Gradient_model = GradientBoostingRegressor()
-        Gradient_model.fit(X_train_scaled, y_train)
+        gradient_boosting = GradientBoostingRegressor()
+        gradient_boosting.fit(X_train_scaled, y_train)
 
-        y_pred = Gradient_model.predict(X_test_scaled)
+        y_pred = gradient_boosting.predict(X_test_scaled)
         y_pred = pd.DataFrame(y_pred)
-        MAE_gradient= metrics.mean_absolute_error(y_test, y_pred)
-        MSE_gradient = metrics.mean_squared_error(y_test, y_pred)
-        RMSE_gradient =np.sqrt(MSE_gradient)
-        st.dataframe(pd.DataFrame([MAE_gradient, MSE_gradient, RMSE_gradient], index=['MAE_gradient', 'MSE_gradient', 'RMSE_gradient'], columns=['Metrics']))
+        gradient_boosting_mae= metrics.mean_absolute_error(y_test, y_pred)
+        gradient_boosting_mse = metrics.mean_squared_error(y_test, y_pred)
+        gradient_boosting_rmse =np.sqrt(gradient_boosting_mse)
+        st.dataframe(pd.DataFrame([gradient_boosting_mae, gradient_boosting_mse, gradient_boosting_rmse], index=['gradient_boosting_mae', 'gradient_boosting_mse', 'gradient_boosting_rmse'], columns=['Metrics']))
 
-        scores = cross_val_score(Gradient_model, X_train_scaled, y_train, cv=k_fold)
+        scores = cross_val_score(gradient_boosting, X_train_scaled, y_train, cv=k_fold)
         st.subheader("{} Cross Validation Score: {}".format(k_fold, np.sqrt(scores)))
 
-        st.subheader("R2 Score: {}".format(r2_score(y_test, Gradient_model.predict(X_test_scaled))))
+        st.subheader("R2 Score: {}".format(r2_score(y_test, gradient_boosting.predict(X_test_scaled))))
 
     elif select_algo == "Decision Tree":
         st.subheader("Training model using {}".format(select_algo))
-        tree_reg_model =DecisionTreeRegressor()
-        tree_reg_model.fit(X_train_scaled, y_train)
+        decision_tree =DecisionTreeRegressor()
+        decision_tree.fit(X_train_scaled, y_train)
 
-        y_pred = tree_reg_model.predict(X_test_scaled)
+        y_pred = decision_tree.predict(X_test_scaled)
         y_pred = pd.DataFrame(y_pred)
-        MAE_tree_reg= metrics.mean_absolute_error(y_test, y_pred)
-        MSE_tree_reg = metrics.mean_squared_error(y_test, y_pred)
-        RMSE_tree_reg =np.sqrt(MSE_tree_reg)
-        st.dataframe(pd.DataFrame([MAE_tree_reg, MSE_tree_reg, RMSE_tree_reg], index=['MAE_tree_reg', 'MSE_tree_reg', 'RMSE_tree_reg'], columns=['Metrics']))
+        decision_tree_mae= metrics.mean_absolute_error(y_test, y_pred)
+        decision_tree_mse = metrics.mean_squared_error(y_test, y_pred)
+        decision_tree_rmse =np.sqrt(decision_tree_mse)
+        st.dataframe(pd.DataFrame([decision_tree_mae, decision_tree_mse, decision_tree_rmse], index=['decision_tree_mae', 'decision_tree_mse', 'decision_tree_rmse'], columns=['Metrics']))
 
-        scores = cross_val_score(tree_reg_model, X_train_scaled, y_train, cv=k_fold)
+        scores = cross_val_score(decision_tree, X_train_scaled, y_train, cv=k_fold)
         st.subheader("{} Cross Validation Score: {}".format(k_fold, np.sqrt(scores)))
 
-        st.subheader("R2 Score: {}".format(r2_score(y_test, tree_reg_model.predict(X_test_scaled))))
+        st.subheader("R2 Score: {}".format(r2_score(y_test, decision_tree.predict(X_test_scaled))))
 
     elif select_algo == "Random Forest":
         st.subheader("Training model using {}".format(select_algo))
-        forest_reg_model =RandomForestRegressor()
-        forest_reg_model.fit(X_train_scaled, y_train)
+        random_forest =RandomForestRegressor()
+        random_forest.fit(X_train_scaled, y_train)
 
-        y_pred = forest_reg_model.predict(X_test_scaled)
+        y_pred = random_forest.predict(X_test_scaled)
         y_pred = pd.DataFrame(y_pred)
-        MAE_forest_reg= metrics.mean_absolute_error(y_test, y_pred)
-        MSE_forest_reg = metrics.mean_squared_error(y_test, y_pred)
-        RMSE_forest_reg =np.sqrt(MSE_forest_reg)
-        st.dataframe(pd.DataFrame([MAE_forest_reg, MSE_forest_reg, RMSE_forest_reg], index=['MAE_forest_reg', 'MSE_forest_reg', 'RMSE_forest_reg'], columns=['Metrics']))
+        random_forest_mae= metrics.mean_absolute_error(y_test, y_pred)
+        random_forest_mse = metrics.mean_squared_error(y_test, y_pred)
+        random_forest_rmse =np.sqrt(random_forest_mse)
+        st.dataframe(pd.DataFrame([random_forest_mae, random_forest_mse, random_forest_rmse], index=['random_forest_mae', 'random_forest_mse', 'random_forest_rmse'], columns=['Metrics']))
 
-        scores = cross_val_score(forest_reg_model, X_train_scaled, y_train, cv=k_fold)
+        scores = cross_val_score(random_forest, X_train_scaled, y_train, cv=k_fold)
         st.subheader("{} Cross Validation Score: {}".format(k_fold, np.sqrt(scores)))
 
-        st.subheader("R2 Score: {}".format(r2_score(y_test, forest_reg_model.predict(X_test_scaled))))
+        st.subheader("R2 Score: {}".format(r2_score(y_test, random_forest.predict(X_test_scaled))))
 
     else:
         st.subheader("Training model using {}".format(select_algo))
-        XGB_model =XGBRegressor()
-        XGB_model.fit(X_train_scaled, y_train)
+        xg_boost =XGBRegressor()
+        xg_boost.fit(X_train_scaled, y_train)
 
-        y_pred = XGB_model.predict(X_test_scaled)
+        y_pred = xg_boost.predict(X_test_scaled)
         y_pred = pd.DataFrame(y_pred)
-        MAE_XGB= metrics.mean_absolute_error(y_test, y_pred)
-        MSE_XGB = metrics.mean_squared_error(y_test, y_pred)
-        RMSE_XGB =np.sqrt(MSE_XGB)
-        st.dataframe(pd.DataFrame([MAE_XGB, MSE_XGB, RMSE_XGB], index=['MAE_XGB', 'MSE_XGB', 'RMSE_XGB'], columns=['Metrics']))
+        xg_boost_mae= metrics.mean_absolute_error(y_test, y_pred)
+        xg_boost_mse = metrics.mean_squared_error(y_test, y_pred)
+        xg_boost_rmse =np.sqrt(xg_boost_mse)
+        st.dataframe(pd.DataFrame([xg_boost_mae, xg_boost_mse, xg_boost_rmse], index=['xg_boost_mae', 'xg_boost_mse', 'xg_boost_rmse'], columns=['Metrics']))
 
-        scores = cross_val_score(XGB_model, X_train_scaled, y_train, cv=k_fold)
+        scores = cross_val_score(xg_boost, X_train_scaled, y_train, cv=k_fold)
         st.subheader("{} Cross Validation Score: {}".format(k_fold, np.sqrt(scores)))
 
-        st.subheader("R2 Score: {}".format(r2_score(y_test, XGB_model.predict(X_test_scaled))))
+        st.subheader("R2 Score: {}".format(r2_score(y_test, xg_boost.predict(X_test_scaled))))
 
         # with open('model/standardScaler.pkl', 'wb') as handle:
         #     pickle.dump(scaler, handle)
@@ -145,7 +145,7 @@ def main():
         np.save('model/mean.npy',scaler.mean_)
 
         with open('model/model.pkl', 'wb') as handle:
-            pickle.dump(XGB_model, handle)
+            pickle.dump(xg_boost, handle)
 
 def app():
     def is_authenticated(password):
